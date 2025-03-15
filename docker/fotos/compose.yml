@@ -1,1 +1,13 @@
-
+services:
+  fr-fotos:
+    image: files.gallery
+    container_name: fr-fotos
+    build: .
+    volumes:
+      - ./fr-fotos:/var/www/html/public
+    environment:
+      PHP_OPCACHE_ENABLE: 1
+networks:
+  default:
+    name: nginx_proxy
+    external: true
