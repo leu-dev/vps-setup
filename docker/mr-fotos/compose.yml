@@ -1,0 +1,13 @@
+services:
+  fr-fotos:
+    image: serversideup/php:8.4-fpm-apache
+    container_name: fr-fotos
+    build: .
+    volumes:
+      - ./html:/var/www/html/public
+    environment:
+      PHP_OPCACHE_ENABLE: 1
+networks:
+  default:
+    name: nginx_proxy
+    external: true
