@@ -23,5 +23,14 @@ RUN apt-get update && apt-get install -y \
 # Ensure `exec()` is enabled by modifying PHP configuration
 RUN echo "disable_functions=" > /usr/local/etc/php/conf.d/custom.ini
 
+# Enable OPcache and configure settings
+RUN echo "zend_extension=opcache" > /usr/local/etc/php/conf.d/opcache.ini && \
+    echo "opcache.enable=1" >> /usr/local/etc/php/conf.d/opcache.ini && \
+    echo "opcache.memory_consumption=128" >> /usr/local/etc/php/conf.d/opcache.ini && \
+    echo "opcache.max_accelerated_files=10000" >> /usr/local/etc/php/conf.d/opcache.ini && \
+    echo "opcache.validate_timestamps=1" >> /usr/local/etc/php/conf.d/opcache.ini && \
+    echo "opcache.revalidate_freq=2" >> /usr/local/etc/php/conf.d/opcache.ini && \
+    echo "opcache.interned_strings_buffer=8" >> /usr/local/etc/php/conf.d/opcache.ini
+
 # Switch back to the default web user
 USER www-data
