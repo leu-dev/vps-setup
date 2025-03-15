@@ -1,4 +1,4 @@
-FROM serversideup/php:8.2-fpm-apache
+FROM serversideup/php:8.4-fpm-apache
 
 # Switch to root user for installation
 USER root
